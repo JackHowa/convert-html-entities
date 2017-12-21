@@ -3,7 +3,8 @@ function convertHTML(str) {
 }
 
 function ampersand(str) {
-    return str.replace('&', '&amp;');
+    const findAmpersands = / & /gi;
+    return str.replace(findAmpersands, ' &amp; ');
 }
 
 function carrot(str) {
