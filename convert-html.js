@@ -1,19 +1,20 @@
 function convertHTML(str) {
-    return ampersand(str);
+  // dumbfix 
+  var findAmpersands = / & /gi; // need space to prevent overlap 
+  var findCarrots = /</gi;
+  var findOtherCarrot = />/gi;
+  var findQuote = /"/gi;
+  var findApostrophe = /'/gi;
+  
+  
+  
+  var ampersanded = str.replace(findAmpersands, ' &amp; ');
+  var carroted = ampersanded.replace(findCarrots, '&lt;');
+  var otherCarroted = carroted.replace(findOtherCarrot, '&gt;')
+  var quoted = otherCarroted.replace(findQuote, '&quot;')
+  var apostrophed = quoted.replace(findApostrophe, '&apos;');
+  return apostrophed;
 }
-
-function ampersand(str) {
-    const findAmpersands = / & /gi;
-    return str.replace(findAmpersands, ' &amp; ');
-}
-
-function carrot(str) {
-    const findCarrots = /</gi;
-    return str.replace(findCarrots, '&​lt;');
-}
-
-const ampersandTest = ampersand("Dolce & Gabbana");
-console.log(ampersandTest);
 
 const carrotTest = carrot("Hamburgers < Pizza < Tacos");
 console.log(carrotTest);
